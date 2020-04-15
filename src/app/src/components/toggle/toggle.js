@@ -1,11 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import './toggle.css'
 
 export default (props) => {
-    const { color, text } = props
+    const { color, text, value, onChange } = props
 
-    let [ state, setState ] = useState(false)
+    let [state, setState] = useState(value || false)
+
+    useEffect(() => {
+        if(onChange){
+            onChange(state)
+        }
+    }, [state])
 
     return (
         <button onClick={() => setState(!state)} className="toggle">

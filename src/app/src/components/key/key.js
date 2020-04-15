@@ -1,11 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import './key.css'
 
 const ESTADOS = ['OFF', 'R', 'L', 'BOTH', 'START']
 
-export default () => {
+export default (props) => {
+    let { onChange } = props
+
     let [ posicion, setPosicion ] = useState(0)
+
+    useEffect(() => {
+        if(onChange){
+            onChange(posicion)
+        }
+    }, [posicion])
 
     let handleAvanzar = () => {
         let nuevaPosicion = posicion + 1 >= ESTADOS.length - 1 ? posicion : posicion + 1

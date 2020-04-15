@@ -4,9 +4,29 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+
+import estadoInicial from './redux/estadoInicial'
+import panel from './redux/reducers'
+
+import io from 'socket.io-client'
+
+let store = createStore(panel, estadoInicial)
+
+const socket = io('http://192.168.1.99:3000')
+
+store.subscribe(() => {
+  let state = store.getState()
+  console.log(state)
+  socket.emit('state', state)
+})
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
