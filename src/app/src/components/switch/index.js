@@ -1,34 +1,24 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 
 import { Container, Input, Label, Name } from './styles'
 
+import { sendButton } from '../../service/send'
+
 export const Switch = ({
+    id,
     name,
     topLabel,
     bottomLabel,
-    onChange,
-    initialValue = false
-}) => {
-    const inputRef = useRef()
-
-    useEffect(() => {
-        inputRef.current.checked = initialValue
-    }, [])
-
-    const handleChange = () => {
-        onChange(inputRef.current.checked)
-    }
-
-    return (
+}) =>  (
         <Container>
             {
                 topLabel &&
-                <Label for="check">{topLabel}</Label>
+                <Label htmlFor={`check${id}`}>{topLabel}</Label>
             }
-            <Input ref={inputRef} id="check" type="checkbox" onChange={handleChange} />
+            <Input id={`check${id}`} type="checkbox" onChange={() => sendButton(id)} />
             {
                 bottomLabel &&
-                <Label for="check">{bottomLabel}</Label>
+                <Label htmlFor={`check${id}`}>{bottomLabel}</Label>
             }
             {
                 name &&
@@ -36,4 +26,3 @@ export const Switch = ({
             }
         </Container>
     );
-};

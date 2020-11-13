@@ -3,7 +3,8 @@ const { vJoy, vJoyDevice } = require('vjoy');
 
 const express = require('express')
 
-const sleep = require('sleep')
+const sleep = require('sleep');
+const { Console } = require('console');
 
 const app = express();
 const server = require('http').Server(app)
@@ -18,15 +19,33 @@ if (!vJoy.isEnabled()) {
 
 let device = vJoyDevice.create(1);
 
+const max_buttons = Object.keys(device.buttons).length
+
+const pressButton = (buttonId) => {
+    device.buttons[buttonId].set(true)
+    sleep.msleep(30)
+    device.buttons[buttonId].set(false)
+}
+
 io.on('connection', socket => {
-    socket.on('evento', data => {
-        device.buttons[data.id].set(true)
-        sleep.msleep(30)
-        device.buttons[data.id].set(false)
+    console.log("Cliente conectado")
+
+    socket.on('button', data => {
+        if(!data.id) {
+            return
+        }
+
+        if( data.id > max_buttons){
+            console.error(`\t Se ha recibido un botón invalido (recibido: ${data.id}, maximo permitido: ${max_buttons})`)
+            return
+        }
+
+        console.log(`\t - Presionado botón: ${data.id} `)
+        pressButton(data.id)
     })
 })
 
-server.listen(3000, () => {
-    console.log("Servidor corriendo en puerto 3000")
+server.listen(3001, '192.168.1.99', () => {
+    console.log("Servidor corriendo en puerto 3001")
 })
 

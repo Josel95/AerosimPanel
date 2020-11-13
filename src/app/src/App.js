@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './App.css';
 
 import Fullscreen from 'react-full-screen'
 
-import Panel from './containers/panel'
+import { XCubPanel } from './components/paneles/xcub'
 
 function App() {
 
@@ -11,13 +10,13 @@ function App() {
 
     return (
         <div>
-            <nav class="navbar navbar-light bg-light">
+            <nav className="navbar navbar-light bg-light">
                 <button onClick={() => setFull(true)}>fullScreen</button>
             </nav>
 
             <Fullscreen enabled={isFull} onChange={full => setFull(full)}>
 
-                <Panel/>
+                <XCubPanel/>
 
             </Fullscreen>
 
