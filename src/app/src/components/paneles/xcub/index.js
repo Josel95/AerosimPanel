@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Container, SwitchPanel } from './styles'
+import { Col, Container, Panel, Row } from './styles'
 
 import { Switch } from '../../switch'
+import { Button } from '../../button'
 
 export const XCubPanel = (props) => {
 
@@ -24,21 +25,55 @@ export const XCubPanel = (props) => {
 
     return (
         <Container>
-            <SwitchPanel>
-                {
-                    leftPanel.map((switchElement) => {
-                        return <Switch topLabel="ON" {...switchElement} />
-                    })
-                }
-            </SwitchPanel>
+            <Row>
+                <Panel>
+                    {
+                        leftPanel.map((switchElement) => {
+                            return <Switch topLabel="ON" {...switchElement} />
+                        })
+                    }
+                </Panel>
 
-            <SwitchPanel>
-                {
-                    rightPanel.map((switchElement) => {
-                        return <Switch topLabel="ON" {...switchElement} />
-                    })
-                }
-            </SwitchPanel>
+                <Panel>
+                    {
+                        rightPanel.map((switchElement) => {
+                            return <Switch topLabel="ON" {...switchElement} />
+                        })
+                    }
+                </Panel>
+            </Row>
+
+            <Row marginTop="3em" justifyContent="center">
+                <Panel padding="1.5em" height="15em">
+                    <Col marginRight="1.5em" justifyContent="flex-end">
+                        <Button id={11} text="HDG"></Button>
+                    </Col>
+                    <Col marginRight="1.5em">
+                        <Button id={12} text="APR"></Button>
+                        <Button id={13} text="NAV"></Button>
+                    </Col>
+                    <Col  marginRight="1.5em" justifyContent="space-around">
+                        <Button id={14} text="AP"></Button>
+                        <Button id={15} text="FD"></Button>
+                    </Col>
+                    <Col  marginRight="1.5em" justifyContent="space-around">
+                        <Button id={16} text="LVL"></Button>
+                        <Button id={17} text="YD"></Button>
+                    </Col>
+                    <Col  marginRight="1.5em">
+
+                    </Col>
+                    <Col  marginRight="1.5em">
+                        <Button id={18} text="IAS"></Button>
+                        <Button id={19} text="VNV"></Button>
+                        <Button id={20} text="VS"></Button>
+                    </Col>
+                    <Col justifyContent="flex-end">
+                        <Button id={21} text="ALT"></Button>
+                    </Col>
+                </Panel>
+            </Row>
+
 
         </Container>
     )
