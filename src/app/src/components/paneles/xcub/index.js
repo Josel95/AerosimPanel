@@ -4,6 +4,7 @@ import { Col, Container, Panel, Row } from './styles'
 
 import { Switch } from '../../switch'
 import { Button } from '../../button'
+import { Knob } from '../../knob'
 
 export const XCubPanel = (props) => {
 
@@ -29,7 +30,7 @@ export const XCubPanel = (props) => {
                 <Panel>
                     {
                         leftPanel.map((switchElement) => {
-                            return <Switch topLabel="ON" {...switchElement} />
+                            return <Switch key={switchElement.id} topLabel="ON" {...switchElement} />
                         })
                     }
                 </Panel>
@@ -37,7 +38,7 @@ export const XCubPanel = (props) => {
                 <Panel>
                     {
                         rightPanel.map((switchElement) => {
-                            return <Switch topLabel="ON" {...switchElement} />
+                            return <Switch key={switchElement.id} topLabel="ON" {...switchElement} />
                         })
                     }
                 </Panel>
@@ -45,7 +46,8 @@ export const XCubPanel = (props) => {
 
             <Row marginTop="3em" justifyContent="center">
                 <Panel padding="1.5em" height="15em">
-                    <Col marginRight="1.5em" justifyContent="flex-end">
+                    <Col marginRight="1.5em" alignItems="center">
+                        <Knob leftId={22} rightId={23} pressId={24}></Knob>
                         <Button id={11} text="HDG"></Button>
                     </Col>
                     <Col marginRight="1.5em">

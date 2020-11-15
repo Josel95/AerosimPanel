@@ -30,6 +30,7 @@ export const Col = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: ${props => props.justifyContent || 'space-between'};
+    align-items: ${props => props.alignItems || ''};
     margin-left: ${props => props.marginLeft || ''};
     margin-right: ${props => props.marginRight || ''};
 `
