@@ -50,8 +50,6 @@ export const Knob = ({
     }
 
     useEffect(() => {
-
-        
         if(direction === 'right') {
             sendButton(rightId, {active: true})
             sendButton(leftId, {active: false})
@@ -73,7 +71,7 @@ export const Knob = ({
         <Container>
             <KnobStyled
                 ref={knobRef}
-                degrees={degrees}
+                direction={direction}
                 onClick={handleClick}
                 onTouchStart={handleTouchDown}
                 onTouchMove={handleTouchMove}

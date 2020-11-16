@@ -21,7 +21,13 @@ let device = vJoyDevice.create(1);
 
 const max_buttons = Object.keys(device.buttons).length
 
-const pressButton = (buttonId) => {
+const pressButton = (buttonId, options) => {
+
+    if(options?.active != undefined) {
+        device.buttons[buttonId].set(options.active)
+        return
+    }
+
     device.buttons[buttonId].set(true)
     sleep.msleep(30)
     device.buttons[buttonId].set(false)
@@ -41,7 +47,7 @@ io.on('connection', socket => {
         }
 
         console.log(`\t - Presionado botón: ${data.id} `)
-        pressButton(data.id)
+        pressButton(data.id, data.options)
     })
 })
 
