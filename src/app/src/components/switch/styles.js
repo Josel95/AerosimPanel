@@ -9,17 +9,6 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 `
-export const Label = styled.label`
-    font-weight: bold;
-    font-family: Arial;
-    color: honeydew;
-`
-
-export const Name = styled(Label)`
-    border-top: 1px solid honeydew;
-    margin-top: 0.5em;
-    padding: 0.5em;
-`
 
 export const Input = styled.input`
     & {

@@ -1,6 +1,8 @@
 import React from "react";
 
-import { Container, Input, Label, Name } from './styles'
+import { Label, Name } from '../sharedStyles'
+
+import { Container, Input } from './styles'
 
 import { sendButton } from '../../service/send'
 

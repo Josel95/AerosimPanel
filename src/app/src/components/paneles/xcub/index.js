@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Col, Container, Panel, Row } from './styles'
+import { Col, Row } from '../../sharedStyles'
+
+import { Container, Panel } from './styles'
 
 import { Switch } from '../../switch'
 import { Button } from '../../button'
