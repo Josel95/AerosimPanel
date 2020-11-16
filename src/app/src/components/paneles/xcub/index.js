@@ -72,7 +72,8 @@ export const XCubPanel = (props) => {
                         <Button id={19} text="VNV"></Button>
                         <Button id={20} text="VS"></Button>
                     </Col>
-                    <Col justifyContent="flex-end">
+                    <Col alignItems="center">
+                        <Knob text="ALT" leftId={25} rightId={26} pressId={27}></Knob>
                         <Button id={21} text="ALT"></Button>
                     </Col>
                 </Panel>
