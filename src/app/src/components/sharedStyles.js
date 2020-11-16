@@ -20,6 +20,7 @@ export const Label = styled.label`
     font-weight: bold;
     font-family: Arial;
     color: honeydew;
+    margin-bottom: 0;
 `
 export const Name = styled(Label)`
     border-top: 1px solid honeydew;

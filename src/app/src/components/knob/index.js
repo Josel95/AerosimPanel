@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, Fragment } from 'react'
+
+import { Label } from '../sharedStyles'
 
 import { Container, Knob as KnobStyled } from './styles'
 
@@ -7,7 +9,8 @@ import { sendButton } from '../../service/send'
 export const Knob = ({
     leftId,
     rightId,
-    pressId
+    pressId,
+    text
 }) => {
 
     const knobRef = useRef()
@@ -68,15 +71,18 @@ export const Knob = ({
     }, [direction, leftId, rightId])
 
     return (
-        <Container>
-            <KnobStyled
-                ref={knobRef}
-                direction={direction}
-                onClick={handleClick}
-                onTouchStart={handleTouchDown}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-            />
-        </Container>
+        <Fragment>
+            <Label>{text}</Label>
+            <Container>
+                <KnobStyled
+                    ref={knobRef}
+                    direction={direction}
+                    onClick={handleClick}
+                    onTouchStart={handleTouchDown}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                />
+            </Container>
+        </Fragment>
     )
 }

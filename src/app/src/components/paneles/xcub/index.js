@@ -49,7 +49,7 @@ export const XCubPanel = (props) => {
             <Row marginTop="3em" justifyContent="center">
                 <Panel padding="1.5em" height="15em">
                     <Col marginRight="1.5em" alignItems="center">
-                        <Knob leftId={22} rightId={23} pressId={24}></Knob>
+                        <Knob text="HDG" leftId={22} rightId={23} pressId={24}></Knob>
                         <Button id={11} text="HDG"></Button>
                     </Col>
                     <Col marginRight="1.5em">
