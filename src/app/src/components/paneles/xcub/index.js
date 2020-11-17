@@ -64,8 +64,13 @@ export const XCubPanel = (props) => {
                         <Button id={16} text="LVL"></Button>
                         <Button id={17} text="YD"></Button>
                     </Col>
-                    <Col  marginRight="1.5em">
-
+                    <Col  marginRight="1.5em" justifyContent="center">
+                        <Knob 
+                            vertical={true} 
+                            topText="DN"
+                            bottomText="UP"
+                            upId={28}
+                            downId={29} />
                     </Col>
                     <Col  marginRight="1.5em">
                         <Button id={18} text="IAS"></Button>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, Fragment } from 'react'
 
 import { Label } from '../sharedStyles'
 
-import { Container, Knob as KnobStyled } from './styles'
+import { HorizontalContainer, HorizontalKnob, VerticalContainer, VerticalKnob } from './styles'
 
 import { sendButton } from '../../service/send'
 
@@ -10,12 +10,15 @@ export const Knob = ({
     leftId,
     rightId,
     pressId,
-    text
+    text,
+    vertical = false,
+    upId,
+    downId,
+    topText,
+    bottomText
 }) => {
 
     const knobRef = useRef()
-
-    const [degrees, setDegrees] = useState(0)
 
     const [direction, setDirection] = useState('none')
 
@@ -39,13 +42,15 @@ export const Knob = ({
             e.touches[0].clientY  
         ]
 
-        const delta = lastPosition[0] - knobPosition[0]
+        const deltaHorizontal = lastPosition[0] - knobPosition[0]
 
-        const direction = delta > 0 ? 'right' : 'left'
+        const deltaVertical = lastPosition[1] - knobPosition[1]
 
-        setDegrees((degrees + 1 * 5 * (delta > 0 ? 1 : -1)) % 360)
+        const directionHorizontal = deltaHorizontal > 0 ? 'right' : 'left'
 
-        setDirection(direction)
+        const directionVertical = deltaVertical > 0 ? 'down' : 'up'
+
+        setDirection( vertical ? directionVertical : directionHorizontal)
     }
 
     const handleClick = () => {
@@ -65,24 +70,58 @@ export const Knob = ({
             return
         }
 
+        if(direction === 'up') {
+            sendButton(upId, {active: true})
+            sendButton(downId, {active: false})
+            return
+        }
+
+        if(direction === 'down') {
+            sendButton(downId, {active: true})
+            sendButton(upId, {active: false})
+            return
+        }
+
         sendButton(leftId, {active: false})
         sendButton(rightId, {active: false})
 
-    }, [direction, leftId, rightId])
+        sendButton(downId, {active: false})
+        sendButton(upId, {active: false})
+
+    }, [direction, leftId, rightId, downId, upId])
+
+    if(!vertical){
+        return (
+            <Fragment>
+                <Label>{text}</Label>
+                <HorizontalContainer>
+                    <HorizontalKnob
+                        ref={knobRef}
+                        direction={direction}
+                        onClick={handleClick}
+                        onTouchStart={handleTouchDown}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    />
+                </HorizontalContainer>
+            </Fragment>
+        )
+    }
 
     return (
         <Fragment>
-            <Label>{text}</Label>
-            <Container>
-                <KnobStyled
+            <VerticalContainer>
+                <Label>{topText}</Label>
+
+                <VerticalKnob
                     ref={knobRef}
                     direction={direction}
-                    onClick={handleClick}
                     onTouchStart={handleTouchDown}
                     onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
-                />
-            </Container>
+                    onTouchEnd={handleTouchEnd} />
+
+                <Label>{bottomText}</Label>
+            </VerticalContainer>
         </Fragment>
     )
 }
