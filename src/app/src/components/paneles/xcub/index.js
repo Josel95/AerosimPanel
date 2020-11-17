@@ -7,6 +7,7 @@ import { Container, Panel } from './styles'
 import { Switch } from '../../switch'
 import { Button } from '../../button'
 import { Knob } from '../../knob'
+import { Key } from '../../key';
 
 export const XCubPanel = (props) => {
 
@@ -46,7 +47,7 @@ export const XCubPanel = (props) => {
                 </Panel>
             </Row>
 
-            <Row marginTop="3em" justifyContent="center">
+            <Row marginTop="3em">
                 <Panel padding="1.5em" height="15em">
                     <Col marginRight="1.5em" alignItems="center">
                         <Knob text="HDG" leftId={22} rightId={23} pressId={24}></Knob>
@@ -81,6 +82,10 @@ export const XCubPanel = (props) => {
                         <Knob text="ALT" leftId={25} rightId={26} pressId={27}></Knob>
                         <Button id={21} text="ALT"></Button>
                     </Col>
+                </Panel>
+
+                <Panel padding="2em">
+                    <Key id={30}/>
                 </Panel>
             </Row>
 
