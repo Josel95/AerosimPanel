@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { Col, Row } from '../../sharedStyles'
-
 import { Container, Panel } from './styles'
+
+import { AreaAutopilot, AreaKey, AreaLeftSwitch, AreaRightSwitch, AreaThrottle } from './styles'
 
 import { Autopilot } from './Autopilot'
 
 import { Switch } from '../../switch'
-import { Button } from '../../button'
-import { Knob } from '../../knob'
+
 import { Key } from '../../key';
 
 export const XCubPanel = (props) => {
@@ -31,35 +30,39 @@ export const XCubPanel = (props) => {
 
     return (
         <Container>
-            <Row>
-                <Panel>
+            <AreaThrottle>
+                
+            </AreaThrottle>
+
+            <AreaLeftSwitch>
+                <Panel padding="1.5em">
                     {
                         leftPanel.map((switchElement) => {
                             return <Switch key={switchElement.id} topLabel="ON" {...switchElement} />
                         })
                     }
                 </Panel>
+            </AreaLeftSwitch>
 
-                <Panel>
+            <AreaRightSwitch>
+                <Panel padding="1.5em">
                     {
                         rightPanel.map((switchElement) => {
                             return <Switch key={switchElement.id} topLabel="ON" {...switchElement} />
                         })
                     }
                 </Panel>
-            </Row>
+            </AreaRightSwitch>
 
-            <Row marginTop="3em">
+            <AreaAutopilot>
                 <Panel padding="1.5em" height="15em">
                     <Autopilot />
                 </Panel>
+            </AreaAutopilot>
 
-                <Panel padding="2em">
-                    <Key id={30}/>
-                </Panel>
-            </Row>
-
-
+            <AreaKey>
+                <Key id={30}/>
+            </AreaKey>
         </Container>
     )
 }
